@@ -11,5 +11,5 @@ module.exports = mongoose.model('User', {
   zip_code: String,
   phone: String,
   email: String,
-  user_type: Number
+  user_type: { type: String, enum: ['doctor', 'nurse', 'patient']
 });

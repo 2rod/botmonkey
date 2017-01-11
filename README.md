@@ -1,35 +1,14 @@
-# :koala: koa-starter
-A starter kit for a slightly opinionated [Koa](http://koajs.com/) project.
-
-## Opinions
-I built this koa starter kit because there's a number of packages I like to use when starting a new project.  The major ones are:
-
-* [Koa v1](http://koajs.com/)
-* [Passport](http://passportjs.org/)
-* [Handlebars](http://handlebarsjs.com/)
-* [Bootstrap v3](http://getbootstrap.com/)
-* [FontAwesome](https://fortawesome.github.io/Font-Awesome/)
-* [ShipIt](https://github.com/shipitjs/shipit)
-
-I'm also including goodies from:
-
-* [Bootstrap Social](http://lipis.github.io/bootstrap-social/)
-* [Github Corners](https://github.com/tholman/github-corners)
-* [Google Universal Analytics](https://www.google.com/analytics/)
-* [ESLint](http://eslint.org/)
-
-## Prerequisites
-* [Node.js](https://nodejs.org/en/) (Version 5 and up recommended)
-* [Github Client ID and Secret](https://github.com/settings/developers) (for OAuth)
+# :koala: botmonkey
+A chatbot for medical health record surveys using [koa-starter] (https://github.com/snollygolly/koa-starter) starter kit.
 
 ### Installation
 
 * Clone down the repository.
 ```
-git clone https://github.com/snollygolly/koa-starter.git
+git clone https://github.com/2rod/botmonkey.git
 ```
 
-* Install packages (from inside the koa-starer folder).
+* Install packages (from inside the botmonkey folder).
 ```
 npm install
 ```

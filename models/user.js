@@ -11,5 +11,17 @@ module.exports = mongoose.model('User', {
   zip_code: String,
   phone: String,
   email: String,
-  user_type: { type: String, enum: ['doctor', 'nurse', 'patient']
+  gender: { type: String, enum: ['M', 'F', 'O'] },
+  birthdate: { type: Date, max: Date.now() },
+  user_type: { type: String, enum: ['doctor', 'nurse', 'patient'] },
+  user_type_fields: {
+    patient: {
+      conditions: [Schema.Types.ObjectId],
+      medications: [Schema.Types.ObjectId],
+      treatments: [Schema.Types.ObjectId]
+    },
+    doctor: {
+      treatment_certs: [Schema.Types.ObjectId]
+    }
+  }
 });

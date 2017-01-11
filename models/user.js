@@ -16,12 +16,12 @@ module.exports = mongoose.model('User', {
   user_type: { type: String, enum: ['doctor', 'nurse', 'patient'] },
   user_type_fields: {
     patient: {
-      conditions: [Schema.Types.ObjectId],
-      medications: [Schema.Types.ObjectId],
-      treatments: [Schema.Types.ObjectId]
+      conditions: { type: String, enum: ['condition1', 'condition2', 'condition3'] },
+      medications: { type: String, enum: ['medication1', 'medication2', 'medication3'] },
+      treatments: { type: String, enum: ['treatment1', 'treatment2', 'treatment3'] }
     },
     doctor: {
-      treatment_certs: [Schema.Types.ObjectId]
+      treatment_certs: { type: String, enum: ['treatment1', 'treatment2', 'treatment3'] }
     }
   }
 });

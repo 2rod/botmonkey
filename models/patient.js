@@ -1,15 +1,8 @@
 const mongoose = require('mongoose');
 
 module.exports = mongoose.model('Patient', {
-  first_name: String,
-  last_name: String,
-  street_address: String,
-  city: String,
-  state: String,
-  zip_code: String,
-  phone: String,
-  email: String,
-  birthdate: Date,
-  gender: String,
-  race: String
+  user_id: Number,
+  gender: { type: String, enum: ['M', 'F', 'O'] },
+  birthdate: { type: Date, max: Date.now() },
+  conditions: [Number]
 });

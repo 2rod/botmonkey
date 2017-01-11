@@ -60,8 +60,13 @@ app.use(function* error(next) {
 
 require("./routes");
 
-console.log(`${config.site.name} is now listening on port ${config.site.port}`);
-app.listen(config.site.port);
+const db = require("./helpers/db");
+
+db.on('error', console.error.bind(console, 'error connecting'));
+db.once('open', () => {
+	app.listen(config.site.port);
+	console.log(`${config.site.name} is now running at http://${config.site.hostname}:${config.site.port}/`);
+});
 
 process.on("SIGINT", function exit() {
 	process.exit();

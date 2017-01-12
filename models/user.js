@@ -20,8 +20,5 @@ module.exports = mongoose.model('User', {
       medications: { type: String, enum: ['medication1', 'medication2', 'medication3'] },
       treatments: { type: String, enum: ['treatment1', 'treatment2', 'treatment3'] }
     },
-    doctor: {
-      treatment_certs: { type: String, enum: ['treatment1', 'treatment2', 'treatment3'] }
-    }
   }
 });

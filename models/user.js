@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports = mongoose.model('User', {
+const userSchema = mongoose.Schema({
   username: { type: String, lowercase: true },
   password: String,
   first_name: String,
@@ -16,3 +16,5 @@ module.exports = mongoose.model('User', {
   user_type: { type: String, enum: ['doctor', 'nurse', 'patient'] },
   medical_number: { type: Number, min: 00000000, max: 99999999 }
 });
+
+module.exports = mongoose.model('User', userSchema);

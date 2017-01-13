@@ -35,7 +35,6 @@
     "koa-static-folder": "^0.1.6",
     "mongodb": "^2.2.20",
     "mongoose": "^4.7.6",
-    "mongoose-auto-increment": "^5.0.1",
     "passport-github": "^1.0.0"
   },
   "devDependencies": {

@@ -61,6 +61,9 @@ app.use(function* error(next) {
 require("./routes");
 
 const db = require("./helpers/db");
+const autoIncrement = require('mongoose-auto-increment');
+
+autoIncrement.initialize(db);
 
 db.on('error', console.error.bind(console, 'error connecting'));
 db.once('open', () => {

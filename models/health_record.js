@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports = mongoose.model('HealthRecord', {
+const healthRecordSchema = mongoose.Schema({
   appointment_id: { type: Schema.Types.ObjectId, ref: 'Appointment'},
   vitals: {
     vital_1: {
@@ -14,7 +14,9 @@ module.exports = mongoose.model('HealthRecord', {
     vital_3: {
       name: String,
       value: Number
-    },
+    }
   },
-  nurse_id: { type: Schema.Types.ObjectId, ref: 'User'},
+  nurse_id: { type: Schema.Types.ObjectId, ref: 'User'}
 });
+
+module.exports = mongoose.model('HealthRecord', healthRecordSchema);

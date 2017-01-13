@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports = mongoose.model('Appointment', {
+const appointmentSchema = mongoose.Schema({
   date: Date,
   patient_id: { type: Schema.Types.ObjectId, ref: 'User' },
   doctor_id: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -9,3 +9,5 @@ module.exports = mongoose.model('Appointment', {
   treatment_given: { type: String, enum: ['treatment1', 'treatment2', 'treatment3'] },
   medication_prescribed: { type: String, enum: ['medication1', 'medication2', 'medication3'] }
 });
+
+module.exports = mongoose.model('Appointment', appointmentSchema);

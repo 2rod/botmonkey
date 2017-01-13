@@ -14,4 +14,5 @@ module.exports = mongoose.model('User', {
   gender: { type: String, enum: ['M', 'F', 'O'] },
   birthdate: { type: Date, max: Date.now() },
   user_type: { type: String, enum: ['doctor', 'nurse', 'patient'] },
+  medical_number: { type: Number, min: 00000000, max: 99999999 }
 });

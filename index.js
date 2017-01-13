@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
-const config = require("./config.json");
+const config = require('./config.json');
 
-const koa = require("koa");
-const hbs = require("koa-hbs");
-const serve = require("koa-static-folder");
+const koa = require('koa');
+const hbs = require('koa-hbs');
+const serve = require('koa-static-folder');
 
 // for passport support
-const session = require("koa-generic-session");
-const bodyParser = require("koa-bodyparser");
-const passport = require("koa-passport");
+const session = require('koa-generic-session');
+const bodyParser = require('koa-bodyparser');
+const passport = require('koa-passport');
 
 const app = koa();
 
@@ -17,10 +17,10 @@ exports.app = app;
 exports.passport = passport;
 
 // the auth model for passport support
-require("./models/auth");
+require('./models/auth');
 
 // misc handlebars helpers
-require("./helpers/handlebars");
+require('./helpers/handlebars');
 
 // trust proxy
 app.proxy = true;
@@ -37,40 +37,31 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // statically serve assets
-app.use(serve("./assets"));
+app.use(serve('./assets'));
 
 // load up the handlebars middlewear
-app.use(hbs.middleware({
-
-	viewPath: `${__dirname}/views`,
-	layoutsPath: `${__dirname}/views/layouts`,
-	partialsPath: `${__dirname}/views/partials`,
-	defaultLayout: "main"
-}));
+app.use(hbs.middleware({viewPath: `${__dirname}/views`, layoutsPath: `${__dirname}/views/layouts`, partialsPath: `${__dirname}/views/partials`, defaultLayout: 'main'}));
 
 app.use(function* error(next) {
-	try {
-		yield next;
-	} catch (err) {
-		this.status = err.status || 500;
-		this.body = err.message;
-		this.app.emit("error", err, this);
-	}
+  try {
+    yield next;
+  } catch (err) {
+    this.status = err.status || 500;
+    this.body = err.message;
+    this.app.emit('error', err, this);
+  }
 });
 
-require("./routes");
+require('./routes');
 
-const db = require("./helpers/db");
-const autoIncrement = require('mongoose-auto-increment');
-
-autoIncrement.initialize(db);
+const db = require('./helpers/db');
 
 db.on('error', console.error.bind(console, 'error connecting'));
 db.once('open', () => {
-	app.listen(config.site.port);
-	console.log(`${config.site.name} is now running at http://${config.site.hostname}:${config.site.port}/`);
+  app.listen(config.site.port);
+  console.log(`${config.site.name} is now running at http://${config.site.hostname}:${config.site.port}/`);
 });
 
-process.on("SIGINT", function exit() {
-	process.exit();
+process.on('SIGINT', function exit() {
+  process.exit();
 });

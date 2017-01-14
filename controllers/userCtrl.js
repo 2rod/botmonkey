@@ -3,16 +3,34 @@ const userCtrl = {};
 const User = require('../models/user');
 
 userCtrl.getAllUsers = function* (next) {
-  this.body = yield User.find((err, users) => {
-    if (err) return console.error(err);
-    this.status = 200;
+  this.body = yield User.find()
+  .then((users) => {
+    if (users) {
+      this.status = 200;
+      return users;
+    }
+    return { found: 0, err: 'no users found!' };
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { found: 0, err: err.message };
   });
 };
 
 userCtrl.getUsersByType = function* (next) {
-  this.body = yield User.find({ user_type: this.params.user_type }, (err, users) => {
-    if (err) return console.error(err);
-    this.status = 200;
+  this.body = yield User.find({ user_type: this.params.user_type })
+  .then((users) => {
+    if (users) {
+      this.status = 200;
+      return users;
+    }
+    return { found: 0, err: 'no users found!' };
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { found: 0, err: err.message };
   });
 };
 

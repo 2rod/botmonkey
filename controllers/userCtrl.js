@@ -69,7 +69,8 @@ userCtrl.updateUserByMedicalNum = function* (next) {
   this.body = yield User.findOneAndUpdate(this.params.medical_number, this.request.body)
   .then((user) => {
     this.status = 200;
-    return user;
+    console.log('user updated: ', user);
+    return { user_id: user._id, updated: 1 };
   })
   .catch((err) => {
     console.log('error', err);

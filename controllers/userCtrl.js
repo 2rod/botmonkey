@@ -86,16 +86,16 @@ userCtrl.deleteUser = function* (next) {
     if (result.result.n === 0) {
       this.status = 400;
       console.error('user not found!');
-      return { err: 'user not found!' };
+      return { deleted: 0, err: 'user not found!' };
     }
     console.log('user deleted');
     this.status = 202;
-    return { msg: 'user deleted' };
+    return { deleted: 1 };
   })
   .catch((err) => {
     console.log('error', err);
     this.status = 400;
-    return { err: err.message };
+    return { deleted: 0, err: err.message };
   });
 };
 

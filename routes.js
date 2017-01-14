@@ -36,7 +36,7 @@ routes.get('/auth/github/callback',
 // user routes
 routes.get('/users', userCtrl.getAllUsers);
 routes.get('/users/:user_type', userCtrl.getUsersByType);
-routes.post('/user/search', userCtrl.getUsers);
+routes.get('/user/:medical_number', userCtrl.getUserByMedicalId);
 routes.post('/user/search/fullname', userCtrl.getUserByFullName);
 routes.get('/users/:user_type/:gender', userCtrl.getUsersByGender);
 routes.post('/user/add', userCtrl.addUser);

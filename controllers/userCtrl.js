@@ -16,12 +16,22 @@ userCtrl.getUsersByType = function* (next) {
   });
 };
 
-userCtrl.getUsers = function* (next) {
+userCtrl.getUserByMedicalId = function* (next) {
   const queryObj = {};
   queryObj[this.request.body.prop] = this.request.body.propValue;
-  this.body = yield User.find(queryObj, (err, users) => {
-    if (err) return console.error(err);
-    this.status = 200;
+  this.body = yield User.findOne({ 'medical_number': this.params.medical_number})
+  .then((user) => {
+    if (user) {
+      this.status = 200;
+      return user;
+    }
+    this.status = 400;
+    return { found: 0, err: 'user not found!' };
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { found: 0, err: err.message };
   });
 };
 

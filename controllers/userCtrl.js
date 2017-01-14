@@ -43,7 +43,6 @@ userCtrl.getUserByMedicalId = function* (next) {
       this.status = 200;
       return user;
     }
-    this.status = 400;
     return { found: 0, err: 'user not found!' };
   })
   .catch((err) => {
@@ -132,7 +131,6 @@ userCtrl.deleteUser = function* (next) {
   })
   .then((result) => {
     if (result.result.n === 0) {
-      this.status = 400;
       console.error('user not found!');
       return { deleted: 0, err: 'user not found!' };
     }

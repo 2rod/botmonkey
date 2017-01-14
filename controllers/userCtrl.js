@@ -81,13 +81,21 @@ userCtrl.updateUserByMedicalNum = function* (next) {
 userCtrl.deleteUser = function* (next) {
   this.body = yield User.remove({
     medical_number: this.params.medical_number
-  }, (err, result) => {
-    if (err || result.result.n === 0) {
+  })
+  .then((result) => {
+    if (result.result.n === 0) {
       this.status = 400;
-      return console.error(err ? err : 'user not found!');
+      console.error('user not found!');
+      return { err: 'user not found!' };
     }
     console.log('user deleted');
     this.status = 202;
+    return { msg: 'user deleted' };
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { err: err.message };
   });
 };
 

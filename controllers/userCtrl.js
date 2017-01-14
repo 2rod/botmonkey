@@ -34,9 +34,17 @@ userCtrl.getUserByFullName = function* (next) {
 };
 
 userCtrl.getUsersByGender = function* (next) {
-  this.body = yield User.find({ gender: this.params.gender.toUpperCase(), user_type: this.params.user_type }, (err, users) => {
-    if (err) return console.error(err);
-    this.status = 200;
+  this.body = yield User.find({ gender: this.params.gender.toUpperCase(), user_type: this.params.user_type })
+  .then((users) => {
+    if (users) {
+      this.status = 200;
+      return users;
+    }
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { found: 0, err: err.message };
   });
 };
 

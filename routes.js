@@ -41,7 +41,6 @@ routes.post('/user/search/fullname', userCtrl.getUserByFullName);
 routes.get('/users/:user_type/:gender', userCtrl.getUsersByGender);
 routes.post('/user/add', userCtrl.addUser);
 routes.put('/user/:medical_number', userCtrl.updateUserByMedicalNum);
-routes.post('/user/update/prop', userCtrl.updateUserByProp);
 routes.delete('/user/delete/:medical_number', userCtrl.deleteUser);
 
 app.use(routes.middleware());

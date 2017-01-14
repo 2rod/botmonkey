@@ -35,8 +35,6 @@ userCtrl.getUsersByType = function* (next) {
 };
 
 userCtrl.getUserByMedicalId = function* (next) {
-  const queryObj = {};
-  queryObj[this.request.body.prop] = this.request.body.propValue;
   this.body = yield User.findOne({ 'medical_number': this.params.medical_number})
   .then((user) => {
     if (user) {

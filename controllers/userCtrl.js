@@ -99,20 +99,7 @@ userCtrl.getUsersByGender = function* (next) {
 
 userCtrl.addUser = function* (next) {
   const userData = this.request.body;
-  this.body = yield User.create({
-    first_name: userData.first_name,
-    last_name: userData.last_name,
-    street_address: userData.street_address,
-    city: userData.city,
-    state: userData.state,
-    zip_code: userData.zip_code,
-    phone: userData.phone,
-    email: userData.email,
-    gender: userData.gender,
-    birthdate: userData.birthdate,
-    user_type: userData.user_type,
-    medical_number: userData.medical_number
-  })
+  this.body = yield User.create(userData)
   .then((user) => {
     this.status = 200;
     console.log('user added: ', user);

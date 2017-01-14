@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
   gender: { type: String, enum: ['M', 'F', 'O'] },
   birthdate: { type: Date, max: Date.now() },
   user_type: { type: String, enum: ['doctor', 'nurse', 'patient'], required: true },
-  medical_number: { type: Number, min: 10000000, max: 99999999, required: true }
+  medical_number: { type: Number, min: 10000000, max: 99999999 }
 });
 
 module.exports = mongoose.model('User', userSchema);

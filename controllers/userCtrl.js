@@ -78,20 +78,6 @@ userCtrl.updateUserByMedicalNum = function* (next) {
   });
 };
 
-userCtrl.updateUserByProp = function* (next) {
-  const userData = this.request.body;
-  this.body = yield User.findOneAndUpdate(userData.searchBy, userData.updates)
-  .then((user) => {
-    this.status = 200;
-    return user;
-  })
-  .catch((err) => {
-    console.log('error', err);
-    this.status = 400;
-    return { err: err.message };
-  });
-};
-
 userCtrl.deleteUser = function* (next) {
   this.body = yield User.remove({
     medical_number: this.params.medical_number

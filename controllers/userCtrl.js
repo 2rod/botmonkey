@@ -34,6 +34,22 @@ userCtrl.getUsersByType = function* (next) {
   });
 };
 
+userCtrl.getUserById = function* (next) {
+  this.body = yield User.findById(this.params.id)
+  .then((user) => {
+    if (user) {
+      this.status = 200;
+      return user;
+    }
+    return { found: 0, err: 'user not found!' };
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { found: 0, err: err.message };
+  });
+};
+
 userCtrl.getUserByMedicalId = function* (next) {
   this.body = yield User.findOne({ 'medical_number': this.params.medical_number})
   .then((user) => {

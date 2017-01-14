@@ -27,9 +27,17 @@ userCtrl.getUsers = function* (next) {
 
 userCtrl.getUserByFullName = function* (next) {
   const body = this.request.body;
-  this.body = yield User.find({ first_name: new RegExp(`^${body.first_name}$`, 'i'), last_name: new RegExp(`^${body.last_name}$`, 'i') }, (err, user) => {
-    if (err) return console.error(err);
-    this.status = 200;
+  this.body = yield User.find({ first_name: new RegExp(`^${body.first_name}$`, 'i'), last_name: new RegExp(`^${body.last_name}$`, 'i') })
+  .then((users) => {
+    if (users) {
+      this.status = 200;
+      return users;
+    }
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { found: 0, err: err.message };
   });
 };
 

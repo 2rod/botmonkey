@@ -55,27 +55,30 @@ userCtrl.addUser = function* (next) {
     birthdate: userData.birthdate,
     user_type: userData.user_type,
     medical_number: userData.medical_number
-  }, (err, user) => {
-    if (err) {
-      this.status = 400;
-      return console.error(err);
-    }
-    console.log('user added: ', user);
-    this.status = 201;
-  });
-};
-
-userCtrl.updateUserByMedicalNum = function* (next) {
-  this.body = yield User.findOneAndUpdate(this.params.medical_number, this.request.body)
+  })
   .then((user) => {
     this.status = 200;
-    console.log('user updated: ', user);
-    return { user_id: user._id, updated: 1 };
+    console.log('user added: ', user);
+    return { added: 1, user_id: user._id };
   })
   .catch((err) => {
     console.log('error', err);
     this.status = 400;
-    return { err: err.message };
+    return { added: 0, err: err.message };
+  });
+};
+
+userCtrl.updateUserByMedicalNum = function* (next) {
+  this.body = yield User.findOneAndUpdate({ medical_number: this.params.medical_number }, this.request.body)
+  .then((user) => {
+    this.status = 200;
+    console.log('user updated: ', user);
+    return { updated: 1, user_id: user._id };
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { updated: 0, err: err.message };
   });
 };
 

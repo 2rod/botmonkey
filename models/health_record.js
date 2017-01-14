@@ -16,7 +16,8 @@ const healthRecordSchema = mongoose.Schema({
       value: Number
     }
   },
-  nurse_id: { type: Schema.Types.ObjectId, ref: 'User'}
+  nurse_id: { type: Schema.Types.ObjectId, ref: 'User'},
+  case_number: { type: Number }
 });
 
 module.exports = mongoose.model('HealthRecord', healthRecordSchema);

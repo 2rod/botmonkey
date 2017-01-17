@@ -66,6 +66,22 @@ userCtrl.getUserByMedicalId = function* (next) {
   });
 };
 
+userCtrl.getUserByExternalId = function* (next) {
+  this.body = yield User.findOne({ 'external_id': this.params.external_id})
+  .then((user) => {
+    if (user) {
+      this.status = 200;
+      return user;
+    }
+    return { found: 0, err: 'user not found!' };
+  })
+  .catch((err) => {
+    console.log('error', err);
+    this.status = 400;
+    return { found: 0, err: err.message };
+  });
+};
+
 userCtrl.getUserByFullName = function* (next) {
   const body = this.request.body;
   this.body = yield User.find({ first_name: new RegExp(`^${body.first_name}$`, 'i'), last_name: new RegExp(`^${body.last_name}$`, 'i') })

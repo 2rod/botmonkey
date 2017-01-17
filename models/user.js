@@ -14,6 +14,7 @@ const userSchema = mongoose.Schema({
   birthdate: { type: Date, max: Date.now() },
   user_type: { type: String, enum: ['doctor', 'nurse', 'patient'], required: true },
   medical_number: { type: Number, min: 10000000, max: 99999999 },
+  external_id: String,
   cases: [Number]
 });
 

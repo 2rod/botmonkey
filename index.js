@@ -42,7 +42,7 @@ app.use(serve('./assets'));
 // load up the handlebars middlewear
 app.use(hbs.middleware({viewPath: `${__dirname}/views`, layoutsPath: `${__dirname}/views/layouts`, partialsPath: `${__dirname}/views/partials`, defaultLayout: 'main'}));
 
-app.use(function* error(next) {
+app.use(function* error (next) {
   try {
     yield next;
   } catch (err) {
@@ -62,6 +62,6 @@ db.once('open', () => {
   console.log(`${config.SITE_NAME} is now running at http://${config.HOSTNAME}:${config.PORT}/`);
 });
 
-process.on('SIGINT', function exit() {
+process.on('SIGINT', function exit () {
   process.exit();
 });

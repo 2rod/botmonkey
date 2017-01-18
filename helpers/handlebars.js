@@ -3,7 +3,7 @@
 const hbs = require('koa-hbs');
 const config = require('../nconf');
 
-hbs.registerHelper('if_eq', function if_eq(a, b, opts) {
+hbs.registerHelper('if_eq', function if_eq (a, b, opts) {
   if (a == b) {
     return opts.fn(this);
   }
@@ -24,7 +24,7 @@ hbs.registerHelper('get_analytics', (opts) => {
   }
 });
 
-hbs.registerHelper('has_analytics', function has_analytics(opts) {
+hbs.registerHelper('has_analytics', function has_analytics (opts) {
   const fnTrue = opts.fn;
   const fnFalse = opts.inverse;
   return (config.SITE_ANALYTICS && config.SITE_ANALYTICS !== false)

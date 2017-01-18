@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('./nconf');
+const config = require('../nconf');
 
 mongoose.Promise = global.Promise;
 

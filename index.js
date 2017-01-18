@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('./config.json');
+const config = require('./nconf');
 
 const koa = require('koa');
 const hbs = require('koa-hbs');
@@ -16,9 +16,6 @@ const app = koa();
 exports.app = app;
 exports.passport = passport;
 
-// setup env
-const nconf = require('./nconf');
-
 // the auth model for passport support
 require('./models/auth');
 
@@ -29,7 +26,7 @@ require('./helpers/handlebars');
 app.proxy = true;
 
 // sessions
-app.keys = [config.site.secret];
+app.keys = [config.SITE_SECRET];
 app.use(session());
 
 // body parser
@@ -61,8 +58,8 @@ const db = require('./helpers/db');
 
 db.on('error', console.error.bind(console, 'error connecting'));
 db.once('open', () => {
-  app.listen(config.site.port);
-  console.log(`${config.site.name} is now running at http://${config.site.hostname}:${config.site.port}/`);
+  app.listen(config.PORT);
+  console.log(`${config.SITE_NAME} is now running at http://${config.site.HOSTNAME}:${config.PORT}/`);
 });
 
 process.on('SIGINT', function exit() {

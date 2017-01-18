@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const config = require('./nconf');
 
 mongoose.Promise = global.Promise;
 
-const url = (process.env.MONGODB_URI) ? process.env.MONGODB_URI : 'mongodb://localhost:27017/botmonkey';
+const url = config.MONGODB_URI;
 
 mongoose.connect(url, function (err, db) {
   if (err) console.error('error connecting: ' + err.stack);

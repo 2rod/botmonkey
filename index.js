@@ -59,7 +59,7 @@ const db = require('./helpers/db');
 db.on('error', console.error.bind(console, 'error connecting'));
 db.once('open', () => {
   app.listen(config.PORT);
-  console.log(`${config.SITE_NAME} is now running at http://${config.site.HOSTNAME}:${config.PORT}/`);
+  console.log(`${config.SITE_NAME} is now running at http://${config.HOSTNAME}:${config.PORT}/`);
 });
 
 process.on('SIGINT', function exit() {

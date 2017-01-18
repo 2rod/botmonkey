@@ -19,8 +19,8 @@ if (config.PORT !== 80) {
   port = `:${config.PORT}`;
 }
 passport.use(new GithubStrategy({
-  clientID: config.GITHUB.clientID,
-  clientSecret: config.GITHUB.clientSecret,
+  clientID: config.GITHUB_CLIENT_ID,
+  clientSecret: config.GITHUB_CLIENT_SECRET,
   callbackURL: `${config.OAUTH_HOST}${port}/auth/github/callback`
 }, (token, tokenSecret, profile, done) => {
   // retrieve user ...

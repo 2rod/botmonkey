@@ -16,6 +16,13 @@ const app = koa();
 exports.app = app;
 exports.passport = passport;
 
+// setup env
+const nconf = require('nconf');
+
+nconf.argv()
+   .env()
+   .file({ file: './config.json' });
+
 // the auth model for passport support
 require('./models/auth');
 

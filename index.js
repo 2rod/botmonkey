@@ -17,11 +17,7 @@ exports.app = app;
 exports.passport = passport;
 
 // setup env
-const nconf = require('nconf');
-
-nconf.argv()
-   .env()
-   .file({ file: './config.json' });
+const nconf = require('./nconf');
 
 // the auth model for passport support
 require('./models/auth');

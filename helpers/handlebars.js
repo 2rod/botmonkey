@@ -35,7 +35,7 @@ hbs.registerHelper('has_analytics', function has_analytics (opts) {
 hbs.registerHelper('has_fb_sdk', function has_fb_sdk (opts) {
   const fnTrue = opts.fn;
   const fnFalse = opts.inverse;
-  return (FB_SDK_ENABLE !== false)
+  return (config.FB_SDK_ENABLE !== false)
       ? fnTrue()
       : fnFalse();
 });

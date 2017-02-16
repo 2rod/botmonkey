@@ -1,6 +1,9 @@
 # :monkey_face: botmonkey
 An API designed to work with a chatbot for medical health record surveys.
 
+Sample of a Facebook Messenger chatbot built using ClaudiaJS chatbot builder: 
+https://github.com/2rod/bot-claudia
+
 
 ### Installation
 
